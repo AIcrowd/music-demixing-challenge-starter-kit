@@ -1,0 +1,6 @@
+aicrowd_api
+coloredlogs
+numpy
+loguru
+boto3
+soundfile

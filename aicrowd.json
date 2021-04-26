@@ -1,0 +1,7 @@
+{
+  "challenge_id": "evaluations-api-music-demixing",
+  "grader_id": "evaluations-api-music-demixing",
+  "authors": ["aicrowd-bot"],
+  "description": "Random audio seperation model",
+  "external_dataset_used": false
+}
