@@ -4,7 +4,7 @@
 
 👉 [Challenge page](https://www.aicrowd.com/challenges/music-demixing-challenge-ismir-2021)
 
-[![Discord](https://img.shields.io/discord/565639094860775436.svg)](https://discord.gg/hAuevqx9Tj)
+[![Discord](https://img.shields.io/discord/565639094860775436.svg)](https://discord.gg/fNRrSvZkry)
 
 
 This repository is the Music Demixing Challenge **Submission template and Starter kit**! 
