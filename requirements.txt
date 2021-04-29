@@ -3,5 +3,5 @@ coloredlogs
 numpy
 loguru
 boto3
-soundfile
+openunmix
 musdb
