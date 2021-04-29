@@ -4,7 +4,7 @@
 
 👉 [Challenge page](https://www.aicrowd.com/challenges/music-demixing-challenge-ismir-2021)
 
-[![Discord](https://img.shields.io/discord/565639094860775436.svg)](https://discord.gg/hAuevqx9Tj)
+[![Discord](https://img.shields.io/discord/565639094860775436.svg)](https://discord.gg/fNRrSvZkry)
 
 
 This repository is the Music Demixing Challenge **Submission template and Starter kit**! 
@@ -48,9 +48,10 @@ In this challenge, you will train your models locally and then upload them to AI
 3. **Train** your models for audio seperation and write prediction code in `test.py`.
 4. [**Submit**](#how-to-submit-a-model) your trained models to [AIcrowd Gitlab](https://gitlab.aicrowd.com) for evaluation [(full instructions below)](#how-to-submit-a-model). The automated evaluation setup will evaluate the submissions against the test dataset to compute and report the metrics on the leaderboard of the competition.
 
-# How to access and use dataset
+# How to access and use the dataset
 
-You are allowed to train their system exclusively on the [MUSDB18-HQ dataset](https://zenodo.org/record/3338373) or you can use your choice of data. 
+You are allowed to train your system either exclusively on the training part of
+[MUSDB18-HQ dataset](https://zenodo.org/record/3338373) or you can use your choice of data.
 According to the dataset used, you will be eligible for different leaderboards.
 
 👉 [Download MUSDB18-HQ dataset](https://zenodo.org/record/3338373)
@@ -63,26 +64,31 @@ In case you are using external dataset, please mention it in your `aicrowd.json`
 }
 ```
 
-The dataset contains `150` songs with audio source seperation in following manner.
+The MUSDB18 dataset contains `150` songs (`100` songs in `train` and `50` songs in `test`) together with their seperations
+in the following manner:
 
 ```bash
-├── AM Contra - Heart Peripheral
-│   ├── bass.wav
-│   ├── drums.wav
-│   ├── mixture.wav
-│   ├── other.wav
-│   └── vocals.wav
-└── AM Contra - Heart Peripheral
-    ├── bass.wav
-    ├── drums.wav
-    ├── mixture.wav
-    ├── other.wav
-    └── vocals.wav
+|
+├── train
+│   ├── A Classic Education - NightOwl
+│   │   ├── bass.wav
+│   │   ├── drums.wav
+│   │   ├── mixture.wav
+│   │   ├── other.wav
+│   │   └── vocals.wav
+│   └── ANiMAL - Clinic A
+│       ├── bass.wav
+│       ├── drums.wav
+│       ├── mixture.wav
+│       ├── other.wav
+│       └── vocals.wav
 [...]
 ```
 
 Here the `mixture.wav` file is the original music on which you need to do audio source seperation.<br>
-While `bass.wav`, `drums.wav`, `other.wav` and `vocals.wav` contain files for your training purposes.
+While `bass.wav`, `drums.wav`, `other.wav` and `vocals.wav` contain files for your training purposes.<br>
+<b>Please note again:</b> To be eligible for Leaderboard A, you are only allowed to train on the songs in `train`.
+
 
 # How to start participating
 
@@ -159,7 +165,7 @@ This JSON is used to map your submission to the challenge - so please remember t
 
 ## Time constraints
 
-You need to make sure that your model can do audio seperation for each music within 2 minutes, otherwise the submission will be marked as failed.
+You need to make sure that your model can do audio seperation for each song within 4 minutes, otherwise the submission will be marked as failed.
 
 ## Local Run
 

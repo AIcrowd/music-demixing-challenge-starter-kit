@@ -44,4 +44,4 @@ In case you are advanced user, you can check other methods to specify the runtim
 
 ----
 
-👋 In case you have any doubts or need help, you can reach out to us via Challenge [Discussions](https://www.aicrowd.com/challenges/music-demixing-challenge-ismir-2021/discussion) or [Discord](https://discord.gg/BT9uegr).
+👋 In case you have any doubts or need help, you can reach out to us via Challenge [Discussions](https://www.aicrowd.com/challenges/music-demixing-challenge-ismir-2021/discussion) or [Discord](https://discord.gg/fNRrSvZkry).

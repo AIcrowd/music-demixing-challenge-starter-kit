@@ -4,3 +4,4 @@ numpy
 loguru
 boto3
 openunmix
+musdb
