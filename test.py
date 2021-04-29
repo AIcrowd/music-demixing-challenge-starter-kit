@@ -2,47 +2,42 @@
 # This file is the entrypoint for your submission.
 # You can modify this file to include your code or directly call your functions/modules from here.
 from evaluator.music_demixing import MusicDemixingPredictor
-import torch
-import openunmix
-import torchaudio
 
 
-class UMXPredictor(MusicDemixingPredictor):
+class RandomPredictor(MusicDemixingPredictor):
+    """
+    PARTICIPANT_TODO:
+    You can do any preprocessing required for your codebase here like loading up models into memory, etc.
+    """
     def prediction_setup(self):
         # Load your model here.
-        self.separator = torch.hub.load("sigsep/open-unmix-pytorch", "umxhq")
+        # self.separator = torch.hub.load('sigsep/open-unmix-pytorch', 'umxhq')
+        pass
 
-    def prediction(
-        self,
-        music_name,
-        mixture_file_path,
-        bass_file_path,
-        drums_file_path,
-        other_file_path,
-        vocals_file_path,
-    ):
+    """
+    PARTICIPANT_TODO:
+    During the evaluation all music files will be provided one by one, along with destination path 
+    for saving separated audios.
 
-        audio, rate = openunmix.data.load_audio(mixture_file_path)
-        estimates = openunmix.predict.separate(
-            audio=audio, rate=rate, separator=self.separator
-        )
+    NOTE: In case you want to load your model, please do so in `predict_setup` function.
+    """
+    def prediction(self, music_name, mixture_file_path, bass_file_path, drums_file_path, other_file_path,
+                   vocals_file_path):
+        print("Mixture file is present at following location: %s" % mixture_file_path)
 
-        target_file_map = {
-            "vocals": vocals_file_path,
-            "drums": drums_file_path,
-            "bass": bass_file_path,
-            "other": other_file_path,
-        }
-        for target, path in target_file_map.items():
-            torchaudio.save(
-                path,
-                torch.squeeze(estimates[target]),
-                sample_rate=self.separator.sample_rate,
-            )
+        # Write your prediction code here:
+        # [...]
+        # estimates = separator(audio)
+        # Save the wav files at assigned locations.
+
+        with open(drums_file_path, "w") as fp:
+            fp.write("")
+
+        print("Drums file should be written at following location: %s" % mixture_file_path)
         print("%s: prediction completed." % music_name)
 
 
 if __name__ == "__main__":
-    submission = UMXPredictor()
+    submission = RandomPredictor()
     submission.run()
     print("Successfully generated predictions!")
