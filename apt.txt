@@ -1,1 +1,5 @@
-python3-opencv
+ffmpeg
+libsndfile1
+sox
+libsox-dev
+libsox-fmt-all
