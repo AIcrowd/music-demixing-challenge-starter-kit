@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # This file is the entrypoint for your submission.
 # You can modify this file to include your code or directly call your functions/modules from here.
+import shutil
 from evaluator.music_demixing import MusicDemixingPredictor
 
 
@@ -21,20 +22,18 @@ class RandomPredictor(MusicDemixingPredictor):
 
     NOTE: In case you want to load your model, please do so in `predict_setup` function.
     """
-    def prediction(self, music_name, mixture_file_path, bass_file_path, drums_file_path, other_file_path,
-                   vocals_file_path):
+    def prediction(self, mixture_file_path, bass_file_path, drums_file_path, other_file_path, vocals_file_path):
         print("Mixture file is present at following location: %s" % mixture_file_path)
 
         # Write your prediction code here:
         # [...]
         # estimates = separator(audio)
         # Save the wav files at assigned locations.
-
-        with open(drums_file_path, "w") as fp:
-            fp.write("")
-
-        print("Drums file should be written at following location: %s" % mixture_file_path)
-        print("%s: prediction completed." % music_name)
+        shutil.copyfile(mixture_file_path, bass_file_path)
+        shutil.copyfile(mixture_file_path, drums_file_path)
+        shutil.copyfile(mixture_file_path, other_file_path)
+        shutil.copyfile(mixture_file_path, vocals_file_path)
+        print("%s: prediction completed." % mixture_file_path)
 
 
 if __name__ == "__main__":

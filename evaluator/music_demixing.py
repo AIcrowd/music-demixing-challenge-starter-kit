@@ -83,15 +83,15 @@ class MusicDemixingPredictor:
 
         for music_name in music_names:
             with time_limit(self.inference_per_music_timeout):
-                self.prediction(music_name=music_name,
-                                mixture_file_path=self.get_music_file_location(music_name),
+                self.prediction(mixture_file_path=self.get_music_file_location(music_name),
                                 bass_file_path=self.get_music_file_location(music_name, "bass"),
                                 drums_file_path=self.get_music_file_location(music_name, "drums"),
                                 other_file_path=self.get_music_file_location(music_name, "other"),
                                 vocals_file_path=self.get_music_file_location(music_name, "vocals"),
                 )
                 
-            self.verify_results(music_name)
+            if not self.verify_results(music_name):
+                raise Exception("verification failed, demixed files not found.")
         aicrowd_helpers.execution_success()
 
     def run(self):
@@ -124,4 +124,9 @@ class MusicDemixingPredictor:
         This function will be called to check all the files exist and other verification needed.
         (like length of the wav files)
         """
-        return
+        valid = True
+        valid = valid and os.path.isfile(self.get_music_file_location(music_name, "vocals"))
+        valid = valid and os.path.isfile(self.get_music_file_location(music_name, "bass"))
+        valid = valid and os.path.isfile(self.get_music_file_location(music_name, "drums"))
+        valid = valid and os.path.isfile(self.get_music_file_location(music_name, "other"))
+        return valid

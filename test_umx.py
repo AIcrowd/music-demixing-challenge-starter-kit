@@ -16,7 +16,6 @@ class UMXPredictor(MusicDemixingPredictor):
 
     def prediction(
         self,
-        music_name,
         mixture_file_path,
         bass_file_path,
         drums_file_path,
@@ -41,7 +40,7 @@ class UMXPredictor(MusicDemixingPredictor):
                 torch.squeeze(estimates[target]),
                 sample_rate=self.separator.sample_rate,
             )
-        print("%s: prediction completed." % music_name)
+        print("%s: prediction completed." % mixture_file_path)
 
 
 if __name__ == "__main__":
