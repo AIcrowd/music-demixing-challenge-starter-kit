@@ -176,7 +176,9 @@ You need to make sure that your model can do audio seperation for each song with
 🙏 You can share your solutions or any other baselines by contributing directly to this repository by opening merge request.
 
 - Add your implemntation as `test_<approach-name>.py`
-- Include it in `predict.py`
+- Test it out using `python test_<approach-name>.py`
+- Add any documentation for your approach at top of your file.
+- Import it in `predict.py`
 - Create merge request! 🎉🎉🎉 
 
 ## Contributors

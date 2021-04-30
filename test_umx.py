@@ -1,8 +1,22 @@
 #!/usr/bin/env python
-#######################
-# openunmix need checkpoints to be submitted along with your code.
-# to do so, run the test_umx.py locally, followed by copying ~/.cache/torch/hub to repository as .cache folder
-#######################
+#
+# This file uses openunmix for music demixing.
+# It is one of official baseline for Music Demixing challenge.
+#
+# NOTE: openunmix need checkpoints to be submitted along with your code.
+#
+# Making submission using openunmix:
+# 1. Change the model in `predict.py` to UMXPredictor.
+# 2. Run this file locally with `python test_umx.py`.
+# 3. Copy the local torch hub cache to this repository:
+#    #> mkdir -p .cache/torch/hub
+#    #> cp -r ~/.cache/torch/hub .cache/torch/hub
+# 4. Submit your code using git-lfs
+#    #> git lfs install
+#    #> git lfs track "*.pth"
+#    #> git add .gitattributes
+#    #> git add .cache
+#
 
 from evaluator.music_demixing import MusicDemixingPredictor
 import torch

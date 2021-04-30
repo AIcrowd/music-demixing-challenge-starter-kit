@@ -5,11 +5,14 @@ import zipfile
 sys.path.append(os.path.dirname(os.path.realpath(os.getcwd())))
 sys.path.append(os.path.realpath(os.getcwd()))
 
-DATASET_FILE_NAME = 'MUSDB18-7-WAV.zip'
+DATASET_FILE_NAME = 'download.zip'
 DATASET_DOWNLOAD_URL = 'https://zenodo.org/record/3270814/files/MUSDB18-7-WAV.zip?download=1'
+DATASET_FULL_DOWNLOAD_URL = 'https://zenodo.org/record/3338373/files/musdb18hq.zip?download=1'
 
-def download_dataset():
+def download_dataset(full=False):
     dn_url = DATASET_DOWNLOAD_URL
+    if full:
+        dn_url = DATASET_FULL_DOWNLOAD_URL
     r = requests.get(dn_url, stream=True)
     with open(DATASET_FILE_NAME, 'wb') as fd:
         for chunk in r.iter_content(chunk_size=256):
@@ -26,7 +29,6 @@ def verify_dataset():
     assert os.path.isdir("data/train") and os.path.isdir("data/test"), "Dataset folder not found"
     assert os.path.isdir("data/train/Hollow Ground - Left Blind"), "Random song check in training folder failed"
     assert os.path.isdir("data/test/Louis Cressy Band - Good Time"), "Random song check in testing folder failed"
-    assert os.stat("data/test/Louis Cressy Band - Good Time/drums.wav").st_size == 1234844    
 
 def move_to_git_root():
     if not os.path.exists(os.path.join(os.getcwd(), ".git")):
@@ -38,7 +40,18 @@ if __name__ == "__main__":
     try:
         verify_dataset()
     except AssertionError:
-        download_dataset()
+        print("Dataset not found...")
+        option = input("Download full dataset (y/Y) or 7s dataset (n/N)? ")
+        if option.lower() == 'y':
+            print("Downloading full dataset...")
+            download_dataset(full=True)
+        else:
+            print("Downloading 7s dataset...")
+            download_dataset()
+        print("Unzipping the dataset...")
         unzip_dataset()
+        print("Cleaning up...")
         #cleanup()
+        print("Verifying the dataset...")
         verify_dataset()
+        print("Done.")
