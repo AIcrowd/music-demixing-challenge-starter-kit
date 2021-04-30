@@ -1,6 +1,9 @@
 #!/usr/bin/env python
-# This file is the entrypoint for your submission.
-# You can modify this file to include your code or directly call your functions/modules from here.
+#######################
+# openunmix need checkpoints to be submitted along with your code.
+# to do so, run the test_umx.py locally, followed by copying ~/.cache/torch/hub to repository as .cache folder
+#######################
+
 from evaluator.music_demixing import MusicDemixingPredictor
 import torch
 import torchaudio
