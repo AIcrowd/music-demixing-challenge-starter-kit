@@ -10,7 +10,7 @@
 # 2. Run this file locally with `python test_umx.py`.
 # 3. Copy the local torch hub cache to this repository:
 #    #> mkdir -p .cache/torch/hub
-#    #> cp -r ~/.cache/torch/hub .cache/torch/hub
+#    #> cp -r ~/.cache/torch/hub .cache/torch/
 # 4. Submit your code using git-lfs
 #    #> git lfs install
 #    #> git lfs track "*.pth"
