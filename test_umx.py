@@ -8,14 +8,11 @@
 # Making submission using openunmix:
 # 1. Change the model in `predict.py` to UMXPredictor.
 # 2. Run this file locally with `python test_umx.py`.
-# 3. Copy the local torch hub cache to this repository:
-#    #> mkdir -p .cache/torch/hub
-#    #> cp -r ~/.cache/torch/hub .cache/torch/
-# 4. Submit your code using git-lfs
+# 3. Submit your code using git-lfs
 #    #> git lfs install
 #    #> git lfs track "*.pth"
 #    #> git add .gitattributes
-#    #> git add .cache
+#    #> git add models
 #
 
 from evaluator.music_demixing import MusicDemixingPredictor
@@ -26,6 +23,8 @@ from openunmix import data, predict
 
 class UMXPredictor(MusicDemixingPredictor):
     def prediction_setup(self):
+        # set local model cache dir
+        torch.hub.set_dir('./models')
         # Load your model here.
         self.separator = torch.hub.load("sigsep/open-unmix-pytorch", "umxhq")
 
