@@ -23,6 +23,7 @@ import torch
 import torchaudio
 from openunmix import data, predict
 
+
 class UMXPredictor(MusicDemixingPredictor):
     def prediction_setup(self):
         # Load your model here.
@@ -38,9 +39,10 @@ class UMXPredictor(MusicDemixingPredictor):
     ):
 
         audio, rate = data.load_audio(mixture_file_path)
-        estimates = predict.separate(
-            audio=audio, rate=rate, separator=self.separator
-        )
+        # mixture rate is 44100 Hz
+        # umx .separate includes resampling to model samplerate
+        # here, nothing is done as model samplerate == 44100
+        estimates = predict.separate(audio=audio, rate=rate, separator=self.separator)
 
         target_file_map = {
             "vocals": vocals_file_path,
@@ -49,10 +51,22 @@ class UMXPredictor(MusicDemixingPredictor):
             "other": other_file_path,
         }
         for target, path in target_file_map.items():
+            if rate != self.separator.sample_rate:
+                # in case the estimate sample rate is different
+                # to mixture (44100) samplerate we need to resample
+                print("resample to mixture sample rate")
+                resampler = torchaudio.transforms.Resample(
+                    orig_freq=self.separator.sample_rate,
+                    new_freq=rate,
+                    resampling_method="sinc_interpolation",
+                )
+                target_estimate = torch.squeeze(resampler(estimates[target]))
+            else:
+                target_estimate = torch.squeeze(estimates[target])
             torchaudio.save(
                 path,
-                torch.squeeze(estimates[target]),
-                sample_rate=self.separator.sample_rate,
+                target_estimate,
+                sample_rate=rate,
             )
         print("%s: prediction completed." % mixture_file_path)
 
