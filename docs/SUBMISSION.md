@@ -58,7 +58,7 @@ After completing above steps, you should start seeing something like below to ta
 ![](https://i.imgur.com/6jzlIdx.png)
 
 and if everything works out correctly, then you should be able to see the final scores like this :
-![](https://i.imgur.com/uQqZyvx.png)
+![](https://i.imgur.com/DXnUKHP.png)
 
 ### Other helpful files
 
