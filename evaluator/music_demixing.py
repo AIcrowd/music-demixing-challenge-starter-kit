@@ -11,6 +11,8 @@ from contextlib import contextmanager
 from os import listdir
 from os.path import isfile, join
 
+import soundfile as sf
+import numpy as np
 from evaluator import aicrowd_helpers
 
 
@@ -65,6 +67,47 @@ class MusicDemixingPredictor:
             os.makedirs(join(self.results_data_path, music_name))
 
         return join(self.results_data_path, music_name, instrument + ".wav")
+
+    def scoring(self):
+        """
+        Add scoring function in the starter kit for participant's reference
+        """
+        def sdr(references, estimates):
+            # compute SDR for one song
+            delta = 1e-7  # avoid numerical errors
+            num = np.sum(np.square(references), axis=(1, 2))
+            den = np.sum(np.square(references - estimates), axis=(1, 2))
+            num += delta
+            den += delta
+            return 10 * np.log10(num  / den)
+
+        music_names = self.get_all_music_names()
+        instruments = ["bass", "drums", "other", "vocals"]
+        scores = {}
+        for music_name in music_names:
+            print("Evaluating for: %s" % music_name)
+            scores[music_name] = {}
+            references = []
+            estimates = []
+            for instrument in instruments:
+                reference_file = join(self.test_data_path, music_name, instrument + ".wav")
+                estimate_file = self.get_music_file_location(music_name, "bass")
+                reference, _ = sf.read(reference_file)
+                estimate, _ = sf.read(estimate_file)
+                references.append(reference)
+                estimates.append(estimate)
+            references = np.stack(references)
+            estimates = np.stack(estimates)
+            references = references.astype(np.float32)
+            estimates = estimates.astype(np.float32)
+            song_score = sdr(references, estimates).tolist()
+            scores[music_name]["sdr_bass"] = song_score[1]
+            scores[music_name]["sdr_drums"] = song_score[1]
+            scores[music_name]["sdr_other"] = song_score[2]
+            scores[music_name]["sdr_vocals"] = song_score[3]
+            scores[music_name]["sdr"] = np.mean(song_score)
+        return scores
+
 
     def evaluation(self):
         """

@@ -35,3 +35,24 @@ Directory structure after running will look something like:
         ├── other.wav
         └── vocals.wav
 ```
+
+## Scoring (local)
+
+You can also calculate scores for your local evaluation by running:
+
+```bash
+python score.py
+```
+
+This will compare files present in `test/` folder with `results/` folder for SDR calculation.
+
+```bash
+def sdr(references, estimates):
+    # compute SDR for one song
+    delta = 1e-7  # avoid numerical errors
+    num = np.sum(np.square(references), axis=(1, 2))
+    den = np.sum(np.square(references - estimates), axis=(1, 2))
+    num += delta
+    den += delta
+    return 10 * np.log10(num  / den)
+```
