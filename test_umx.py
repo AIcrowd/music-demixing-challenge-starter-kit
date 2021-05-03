@@ -40,6 +40,8 @@ class UMXPredictor(MusicDemixingPredictor):
 
         audio, rate = data.load_audio(mixture_file_path)
         # mixture rate is 44100 Hz
+        # umx .separate includes resampling to model samplerate
+        # here, nothing is done as model samplerate == 44100
         estimates = predict.separate(audio=audio, rate=rate, separator=self.separator)
 
         target_file_map = {
