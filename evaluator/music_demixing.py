@@ -101,7 +101,7 @@ class MusicDemixingPredictor:
             references = references.astype(np.float32)
             estimates = estimates.astype(np.float32)
             song_score = sdr(references, estimates).tolist()
-            scores[music_name]["sdr_bass"] = song_score[1]
+            scores[music_name]["sdr_bass"] = song_score[0]
             scores[music_name]["sdr_drums"] = song_score[1]
             scores[music_name]["sdr_other"] = song_score[2]
             scores[music_name]["sdr_vocals"] = song_score[3]
