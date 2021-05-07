@@ -168,7 +168,6 @@ class XUMXPredictor(MusicDemixingPredictor):
                 estimates[target],
                 rate
             )
-        print(x.shape, estimates["bass"].shape)
 
 
 if __name__ == "__main__":
