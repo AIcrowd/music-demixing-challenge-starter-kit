@@ -9,6 +9,7 @@
 # 1. Change the model in `predict.py` to XUMXPredictor.
 # 2. Download the pre-trained model from Zenodo into the folder `./models`
 #    #> mkdir models
+#    #> cd models
 #    #> wget https://zenodo.org/record/4740378/files/pretrained_xumx_musdb18HQ.pth
 # 3. Submit your code using git-lfs
 #    #> git lfs install
@@ -156,7 +157,7 @@ class XUMXPredictor(MusicDemixingPredictor):
         for target in estimates:
             estimates[target] = estimates[target][:x.shape[0], :]
 
-        # Step 3: Store results
+        # Step 5: Store results
         target_file_map = {
             "vocals": vocals_file_path,
             "drums": drums_file_path,
