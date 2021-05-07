@@ -6,3 +6,6 @@ boto3
 openunmix
 musdb
 SoundFile
+scipy
+norbert
+git+https://github.com/asteroid-team/asteroid.git
