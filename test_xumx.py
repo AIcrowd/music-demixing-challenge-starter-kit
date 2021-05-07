@@ -126,8 +126,9 @@ def separate(
 
 class XUMXPredictor(MusicDemixingPredictor):
     def prediction_setup(self):
-        # Load your model here.
+        # Load your model here and put it into `evaluation` mode
         self.separator = XUMX.from_pretrained("./models/pretrained_xumx_musdb18HQ.pth")
+        self.separator.eval()
 
     def prediction(
         self,
