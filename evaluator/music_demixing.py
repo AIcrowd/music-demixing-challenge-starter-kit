@@ -91,7 +91,7 @@ class MusicDemixingPredictor:
             estimates = []
             for instrument in instruments:
                 reference_file = join(self.test_data_path, music_name, instrument + ".wav")
-                estimate_file = self.get_music_file_location(music_name, "bass")
+                estimate_file = self.get_music_file_location(music_name, instrument)
                 reference, _ = sf.read(reference_file)
                 estimate, _ = sf.read(estimate_file)
                 references.append(reference)
