@@ -141,12 +141,19 @@ class XUMXPredictor(MusicDemixingPredictor):
         # Step 1: Load mixture
         x, rate = sf.read(mixture_file_path)  # mixture is stereo with sample rate of 44.1kHz
 
-        # Step 2: Perform separation
+        # Step 2: Pad mixture to compensate STFT truncation
+        x_padded = np.pad(x, ((0, 1024), (0, 0)))
+
+        # Step 3: Perform separation
         estimates = separate(
-            x,
+            x_padded,
             self.separator,
             self.separator.sources
         )
+
+        # Step 4: Truncate to orignal length
+        for target in estimates:
+            estimates[target] = estimates[target][:x.shape[0], :]
 
         # Step 3: Store results
         target_file_map = {
