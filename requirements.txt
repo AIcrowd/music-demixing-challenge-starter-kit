@@ -9,3 +9,4 @@ SoundFile
 scipy
 norbert
 asteroid>=0.5.0
+wget
