@@ -64,7 +64,7 @@ def __define_small_params__(is_light=False):
     # FFT params
     args['n_fft'] = 2048
     args['hop_length'] = 1024
-    args['num_frame'] = 128
+    args['num_frame'] = 256
 
     # SVS Framework
     args['spec_type'] = 'complex'
@@ -72,12 +72,12 @@ def __define_small_params__(is_light=False):
 
     # Other Hyper-params
     args['optimizer'] = 'adam'
-    args['lr'] = 0.001
+    args['lr'] = 0.0005
     args['train_loss'] = 'spec_mse'
     args['val_loss'] = 'raw_l1'
 
     # DenseNet Hyper-params
-    args['n_blocks'] = 7
+    args['n_blocks'] = 9
     args['input_channels'] = 4
     args['internal_channels'] = 16
     args['first_conv_activation'] = 'relu'

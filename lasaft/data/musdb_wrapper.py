@@ -242,7 +242,7 @@ class SingleTrackSet(Dataset):
 
         self.hop_length = hop_length
         self.window_length = hop_length * (num_frame - 1)
-        self.trim_length = get_trim_length(self.hop_length, 4096)
+        self.trim_length = get_trim_length(self.hop_length, 8192)
 
         self.true_samples = self.window_length - 2 * self.trim_length
         self.lengths = [track.shape[0]]
