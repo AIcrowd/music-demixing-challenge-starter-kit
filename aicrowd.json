@@ -2,8 +2,8 @@
   "challenge_id": "evaluations-api-music-demixing",
   "grader_id": "evaluations-api-music-demixing",
   "authors": [
-    "aicrowd-bot"
+    "Woosung Choi"
   ],
-  "description": "Open-Unmix Separation model",
+  "description": "Lightsaft: Memory-efficient Latent Source Attentive Frequency Transformation for Conditioned Source Separation",
   "external_dataset_used": false
 }
