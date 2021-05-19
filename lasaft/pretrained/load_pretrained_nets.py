@@ -1,5 +1,5 @@
 import os
-import wget
+import requests
 
 from lasaft.source_separation.conditioned.cunet.models.dcun_tfc_gpocm_lasaft import DCUN_TFC_GPoCM_LaSAFT_Framework
 from lasaft.source_separation.conditioned.cunet.models.dcun_tfc_gpocm_lightsaft import \
@@ -119,7 +119,7 @@ def PreTrainedLaSAFTNet(model_name='lasaft_large_2020'):
     elif not os.path.exists(ckpt):
         print('no cached checkpoint found.\nautomatic download!')
         url = 'http://intelligence.korea.ac.kr/assets/' + model_name + '.ckpt'
-        wget.download(url)
+        response = requests.get(url, stream=True)
         print('successfully downloaded the pretrained model.')
 
     if 'medium_' in model_name:
@@ -141,7 +141,10 @@ def PreTrainedLightSAFTNet(model_name):
     elif not os.path.exists(ckpt):
         print('no cached checkpoint found.\nautomatic download!')
         url = 'http://intelligence.korea.ac.kr/assets/' + model_name + '.ckpt'
-        wget.download(url)
+        response = requests.get(url, stream=True)
+        with open(model_name + '.ckpt', 'wb') as f:
+            f.write(response.content)
+
         print('successfully downloaded the pretrained model.')
 
     if 'small' in model_name:
