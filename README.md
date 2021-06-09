@@ -1,20 +1,17 @@
-![Airborne Banner](https://images.aicrowd.com/raw_images/challenges/social_media_image_file/777/8be36d177c2b161d7944.jpg)
+![Music Demixing Banner](https://images.aicrowd.com/raw_images/challenges/social_media_image_file/777/8be36d177c2b161d7944.jpg)
 
-# Music Demixing Challenge - Starter Kit
-
-👉 [Challenge page](https://www.aicrowd.com/challenges/music-demixing-challenge-ismir-2021)
-
+# [Music Demixing Challenge ](https://www.aicrowd.com/challenges/music-demixing-challenge-ismir-2021)- Starter Kit 
 [![Discord](https://img.shields.io/discord/565639094860775436.svg)](https://discord.gg/fNRrSvZkry)
 
-
-This repository is the Music Demixing Challenge **Submission template and Starter kit**! 
-
-Clone the repository to compete now!
+This repository is the Music Demixing Challenge **Submission template and Starter kit**! Clone the repository to compete now!
 
 **This repository contains**:
 *  **Documentation** on how to submit your models to the leaderboard
 *  **The procedure** for best practices and information on how we evaluate your agent, etc.
 *  **Starter code** for you to get started!
+
+> **NOTE:** 
+If you are resource-constrained or would not like to setup everything in your system, you can make your submission from inside Google Colab too. [**Check out the beta version of the Notebook.**](https://colab.research.google.com/drive/14FpktUXysnjIL165hU3rTUKPHo4-YRPh?usp=sharing)
 
 
 
