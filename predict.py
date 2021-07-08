@@ -1,6 +1,7 @@
 from test import CopyPredictor, ScaledMixturePredictor
 from test_umx import UMXPredictor
 from test_xumx import XUMXPredictor
+from test_umxl import UMXLPredictor
 
 # Predictor which does nothing
 copy_predictor = CopyPredictor()
@@ -13,6 +14,10 @@ scaledmixture_predictor = ScaledMixturePredictor()
 
 # X-UMX needs `models` folder to be present in your submission, check test_xumx.py to learn more
 # xumx_predictor = XUMXPredictor()
+
+# UMXL needs `models` folder to be present in your submission, check test_umxl.py to learn more
+# Reminder: Set `external_dataset_used` to `true` in your `aicrowd.yaml` if your are using UMXL
+# umxl_predictor = UMXLPredictor()
 
 """
 PARTICIPANT_TODO: The implementation you want to submit as your submission
